@@ -51,22 +51,51 @@ describe("MathNum", function () {
             expect(num.val()).to.equal(4);
         });
     });
+    });
 
     describe("#multiply(num)", function () {
     it("multiplies the original value by it passed number", function () {
+      var num = new MathNum(5);
+      num.multiply(2);
+      expect(num.val()).to.equal(10);
     });
     context("when given negative numbers or zero", function () {
         it("multiplies them as expected", function () {
+          var num = new MathNum(5);
+          num.multiply(-2);
+          expect(num.val()).to.equal(-10);
+
+          var num = new MathNum(5);
+          num.multiply(0);
+          expect(num.val()).to.equal(0);
         });
     });
     context("when given non-numbers", function () {
         it("does nothing", function () {
+          var num = new MathNum(5);
+          num.multiply("hello");
+          expect(num.val()).to.equal(5);
         });
     });
     context("when passed an array", function () {
         it("multiplies the value by every value in the array", function () {
+          var num = new MathNum(4);
+          num.multiply([2, 2]);
+          expect(num.val()).to.equal(16);
+          num.multiply([-1, -2]);
+          expect(num.val()).to.equal(32);
+          num.multiply(["Hello", 2]);
+          expect(num.val()).to.equal(64);
         });
     });
+
+    describe("#pow(input)", function () {
+      it("increases to the power of input", function(){
+        var num = new MathNum(5);
+        num.pow(2);
+        expect(num.val()).to.equal(25);
+      })
+    })
 });
 
 });
@@ -78,4 +107,3 @@ describe("MathNum", function () {
             expect(num.val()).to.equal(0);
         });
     });
-});
